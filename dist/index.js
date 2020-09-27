@@ -2180,6 +2180,11 @@ async function installWrapper (pathToCLI) {
   core.exportVariable('TERRAFORM_CLI_PATH', pathToCLI);
 }
 
+function installProblemMatchers() {
+  const matcher = __webpack_require__.ab + "terraform-validate.json";
+  core.info(`::add-matcher::${matcher}`);
+}
+
 // Add credentials to CLI Configuration File
 // https://www.terraform.io/docs/commands/cli-config.html
 async function addCredentials (credentialsHostname, credentialsToken, osPlat) {
@@ -2221,6 +2226,8 @@ async function run () {
     const osPlat = os.platform();
     const osArch = os.arch();
 
+    installProblemMatchers();
+
     // Download metadata about all versions of Terraform CLI
     const versionMetadata = await downloadMetadata();
 
@@ -2248,6 +2255,7 @@ async function run () {
       if (credentialsHostname && credentialsToken) {
         await addCredentials(credentialsHostname, credentialsToken, osPlat);
       }
+
       return versionObj;
     } else {
       core.setFailed(`Could not find Terraform version ${version} in version list`);

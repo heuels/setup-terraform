@@ -1,0 +1,18 @@
+{
+  "problemMatcher": [
+      {
+          "owner": "terraform-validate",
+          "pattern": [
+              {
+                  "regexp": "\"severity\": \"(.*)\",\\s+\"summary\": \"(.*)\",\\s+\"detail\": \"(.*)\",\\s.*\\s+\"filename\": \"(.*)\",\\s.*\\s+\"line\": (\\d+),\\s+\"column\": (\\d+)",
+                  "file": 4,
+                  "line": 5,
+                  "column": 6,
+                  "severity": 1,
+                  "message": 3,
+                  "code": 2
+              }
+          ]
+      }
+  ]
+}
